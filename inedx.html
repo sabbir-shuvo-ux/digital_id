@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!-- font-awsome -->
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <title>test</title>
+  </head>
+  <body onload="initClock()">
+
+   <div class="body">
+     <div class="main">
+    <div class="bar_main">
+      <h2 class="text-center text-uppercase">steven kunjachan</h2>
+      <div class="bar_img text-center">
+        <img class="img-fluid" src="assets/img/index1.JPG" alt="">
+        <i class="fa fa-lock d-block text-right" aria-hidden="true"></i>
+      </div>
+      <!-- clock -->
+      <div class="datetime">
+      <div class="date">
+        <span id="dayname">Day</span>,
+        <span id="month">Month</span>
+        <span id="daynum">00</span>,
+        <span id="year">Year</span>
+      </div>
+      <div class="time">
+        <span id="hour">00</span>:
+        <span id="minutes">00</span>:
+        <span id="seconds">00</span>
+        <span id="period">AM</span>
+      </div>
+    </div>
+      <!-- end_clock -->
+    </div><!-- bar_main_end -->
+
+    <div class="down_main">
+      <h3>Health Card</h3>
+      <div class="card_health">
+        <div class="inner_card_one pb-5">
+          <img src="assets/img/index4.JPG" alt="">
+          <p>H.C. No.</p>
+        </div>
+        <div class="inner_card_one pb-4">
+          <img src="assets/img/index3.JPG" alt="">
+          <p>Result</p>
+        </div>
+      </div>
+    </div><!-- down_main-end -->
+  </div><!-- main -->
+   </div>
+
+
+<!-- js_clock -->
+<script type="text/javascript">
+    function updateClock(){
+      var now = new Date();
+      var dname = now.getDay(),
+          mo = now.getMonth(),
+          dnum = now.getDate(),
+          yr = now.getFullYear(),
+          hou = now.getHours(),
+          min = now.getMinutes(),
+          sec = now.getSeconds(),
+          pe = "AM";
+      
+          if(hou >= 24){
+            pe = "PM";
+          }
+          if(hou == 0){
+            hou = 24;
+          }
+          if(hou > 24){
+            hou = hou - 24;
+          }
+
+          Number.prototype.pad = function(digits){
+            for(var n = this.toString(); n.length < digits; n = 0 + n);
+            return n;
+          }
+
+          var months = ["January", "February", "March", "April", "May", "June", "July", "Augest", "September", "October", "November", "December"];
+          var week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+          var ids = ["dayname", "month", "daynum", "year", "hour", "minutes", "seconds", "period"];
+          var values = [week[dname], months[mo], dnum.pad(2), yr, hou.pad(2), min.pad(2), sec.pad(2), pe];
+          for(var i = 0; i < ids.length; i++)
+          document.getElementById(ids[i]).firstChild.nodeValue = values[i];
+    }
+
+    function initClock(){
+      updateClock();
+      window.setInterval("updateClock()", 1);
+    }
+    </script>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    
+  </body>
+</html>
